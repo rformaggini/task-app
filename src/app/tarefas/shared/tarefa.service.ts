@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Tarefa } from './tarefas';
+import { Tarefa } from './tarefa';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TarefasService {
+export class TarefaService {
 
   tarefas:Tarefa[] = [
     {id: 1, descricao: 'Tarefa 1',dataInclusao:'18/09/2020', status: true},
@@ -19,6 +19,16 @@ export class TarefasService {
   getAll(){
     return this.tarefas;
   }
+  getById(id: number){
+    const tarefa = this.tarefas.find(value => {value.id == id})
+    return tarefa;
+  }
+  save(tarefa: Tarefa){
+    if(tarefa.id){
 
+    }else{
+
+    }
+  }
 
 }

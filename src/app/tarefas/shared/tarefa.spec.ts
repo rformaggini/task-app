@@ -1,7 +1,7 @@
-import { Tarefas } from './tarefas';
+import { Tarefa } from './tarefa';
 
 describe('Tarefas', () => {
   it('should create an instance', () => {
-    expect(new Tarefas()).toBeTruthy();
+    expect(new Tarefa()).toBeTruthy();
   });
 });

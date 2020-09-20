@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { TarefasListComponent } from './tarefas/tarefas-list/tarefas-list.component';
 import { TarefasListItemComponent } from './tarefas/tarefas-list-item/tarefas-list-item.component';
 import { TarefasFormComponent } from './tarefas/tarefas-form/tarefas-form.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { TarefasFormComponent } from './tarefas/tarefas-form/tarefas-form.compon
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule
   ],
   providers: [],
