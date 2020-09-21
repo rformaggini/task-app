@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TarefasFormComponent } from './tarefas/tarefas-form/tarefas-form.component';
-import { TarefasListComponent } from './tarefas/tarefas-list/tarefas-list.component';
+import { TarefaFormComponent } from './tarefas/tarefas-form/tarefas-form.component';
+import { TarefaListComponent } from './tarefas/tarefas-list/tarefas-list.component';
 
 
 const routes: Routes = [
-  {path: '', component: TarefasListComponent},
-  {path: 'new', component: TarefasFormComponent},
-  {path: 'edit/:id', component: TarefasFormComponent}
+  {path: '', component: TarefaListComponent},
+  {path: 'new/:id', component: TarefaFormComponent},
+  {path: 'edit/:id', component: TarefaFormComponent}
 ];
 
 @NgModule({

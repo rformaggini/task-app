@@ -1,53 +1,33 @@
 <h4> Lista de Tarefas</h4>
 <hr/>
-<button type="button" class="btn btn-primary" [routerLink]="['/new']" >
-    Criar lista
-</button>
+    <div class="form-inline">
+        <label class="sr-only" for="inlineFormInputName2">Nome</label>
+        <input type="text" class="form-control mb-2 mr-sm-2" [(ngModel)]="novaTarefa.descricao"
+            id="inlineFormInputName2" placeholder="Nome da lista">
+
+        <button type="button" (click)="onSubmit()" class="btn btn-primary mb-2">Criar lista</button>
+    </div>
+<hr/>
 
 <section>
+    <ul class="list-group" *ngIf="tarefas.length > 0">
+        <li class="list-group-item" *ngFor="let tarefa of tarefas">
+            <div>
+                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">
+                    {{tarefa.descricao}} 
+                </label>
+                <button type="button"  class="btn btn-primary my-1 float-right" [routerLink]="['/new', tarefa.id ]"  >
+                    Nova atividade
+                </button>
+            </div>
+            <br>
+            <app-atividade-list-item [atividades]="tarefa.atividades">
+            </app-atividade-list-item>
+            <br>
+        </li>
+    </ul>
     <div *ngIf="tarefas.length == 0" class="alert alert-warning" role="alert">
-        Nenhuma tarefas cadastrada.
+        Nenhuma lista de tarefas cadastrada.
     </div>
-    <table class="table table-hover" *ngIf="tarefas.length != 0">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Concluida?</th>
-            <th scope="col">Descrição</th>
-            <th scope="col">Data de Inclusão</th>
-            <th scope="col" colspan="2" class="text-center">Botões</th>
-            
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let tarefa of tarefas">
-            <th scope="row">{{tarefa.id}}</th>
-            <td>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="blankCheckbox" value="opcao1"/>
-                </div>
-            </td>
-            <td>
-                <div [ngClass]="tarefa.status ? 'completed' : '' ">
-                    {{tarefa.descricao}}
-                </div>
-            </td>
-            <td>{{tarefa.dataInclusao}}</td>
-            <td>
-                <div>
-                    <button type="button" class="btn btn-secondary" [disabled]="(tarefa.status)" [routerLink]="['/edit',tarefa.id]">
-                        Editar
-                    </button>
-                </div>
-            </td>
-            <td>
-                <div>
-                    <button type="button" class="btn btn-warning" (click)="remover(tarefa)">
-                        Excluir
-                    </button>
-                </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+   
 </section>

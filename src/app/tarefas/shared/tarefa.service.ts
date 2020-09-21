@@ -1,23 +1,35 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Atividade } from './atividade';
 import { Tarefa } from './tarefa';
+
+import {  } from 'rxjs'
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class TarefaService {
 
+  private readonly API = 'http://localhost:8080/tarefas';
+
+  atividades: Atividade[] = [
+    {id: 1, descricao: "Atividade 1", status: false, tarefaId: 1 },
+    {id: 2, descricao: "Atividade 2 ", status: false, tarefaId: 1 }
+  ]
+
   tarefas:Tarefa[] = [
-    {id: 1, descricao: 'Tarefa 1',dataInclusao:'18/09/2020', status: true},
-    {id: 2, descricao: 'Tarefa 2',dataInclusao:'18/09/2020', status: false},
-    {id: 3, descricao: 'Tarefa 3',dataInclusao:'18/09/2020', status: true},
-    {id: 4, descricao: 'Tarefa 4',dataInclusao:'18/09/2020', status: false},
-    {id: 5, descricao: 'Tarefa 5',dataInclusao:'18/09/2020', status: true}
+    {id: 1, descricao: 'Tarefas do Trabalho', atividades: this.atividades},
+    {id: 2, descricao: 'Tarefas de casa', atividades: this.atividades}
   ]
   
-  constructor() { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
   getAll(){
-    return this.tarefas;
+    return this.http.get<Tarefa[]>(this.API);
+      
   }
   getById(id: number){
     const tarefa = this.tarefas.find(value => {value.id == id})

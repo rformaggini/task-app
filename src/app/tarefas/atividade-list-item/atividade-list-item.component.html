@@ -1,0 +1,37 @@
+<div *ngIf="atividades.length == 0" class="alert alert-warning" role="alert">
+    Nenhuma atividade cadastrada para esta lista de tarefas.
+</div>
+<table class="table table-hover" *ngIf="atividades.length > 0">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Concluida?</th>
+            <th scope="col">Descrição</th>
+
+            <th scope="col" class="text-center">Botões</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let atividade of atividades">
+            <th scope="row">{{atividade.id}}</th>
+            <td>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="blankCheckbox" value="opcao1"/>
+                </div>
+            </td>
+            <td>
+                <div [ngClass]="atividade.status ? 'completed' : '' ">
+                    {{atividade.descricao}}
+                </div>
+            </td>
+            <td>
+                <div>
+                    <button type="button" class="btn btn-warning" (click)="remover(atividade)">
+                        Excluir
+                    </button>
+                </div>
+            </td>
+          </tr>
+        </tbody>
+</table>
+
